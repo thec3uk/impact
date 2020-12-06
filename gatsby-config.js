@@ -17,9 +17,16 @@ module.exports = {
   siteMetadata: {
     title: `C3 Impact`,
     author: `The C3 Church`,
-    description: `C3 Impact empowers and helps those in our local community by providing the resources they need. Based out of Cambridge and Bury St Edmunds`
+    description: `C3 Impact empowers and helps those in our local community by providing the resources they need. Based out of Cambridge and Bury St Edmunds`,
   },
   plugins: [
+    {
+      resolve: `gatsby-background-image`,
+      options: {
+        // add your own characters to escape, replacing the default ':/'
+        specialChars: `/:`,
+      },
+    },
     {
       resolve: `gatsby-source-prismic`,
       options: {
@@ -66,12 +73,7 @@ module.exports = {
         // provided to the function, as seen below. This allows you to use
         // different HTML serializer logic for each field if necessary.
         // See: https://prismic.io/docs/nodejs/beyond-the-api/html-serializer
-        htmlSerializer: ({ node, key, value }) => (
-          type,
-          element,
-          content,
-          children
-        ) => {
+        htmlSerializer: ({ node, key, value }) => (type, element, content, children) => {
           // Your HTML serializer
         },
       },
@@ -96,7 +98,7 @@ module.exports = {
         background_color: `#f1ece1`,
         theme_color: `#f1ece1`,
         display: `minimal-ui`,
-        icon: `static/favicon.ico`, // This path is relative to the root of the site.
+        icon: `static/logo.jpg`, // This path is relative to the root of the site.
       },
     },
   ],

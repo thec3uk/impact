@@ -113,7 +113,7 @@
               "display": "internal links"
             }
           ],
-          "text1": [
+          "text_with_cta": [
             {
               "name": "with_block_title",
               "display": "with Block Title"
@@ -306,6 +306,28 @@
                   "label": "title"
                 }
               },
+              "title_alignment": {
+                "type": "Select",
+                "config": {
+                  "options": [
+                    "left",
+                    "right",
+                    "center"
+                  ],
+                  "default_value": "left",
+                  "label": "Title Alignment"
+                }
+              },
+              "title_font_colour": {
+                "type": "Link",
+                "config": {
+                  "select": "document",
+                  "customtypes": [
+                    "colour"
+                  ],
+                  "label": "Title Font Colour"
+                }
+              },
               "slice_background_colour": {
                 "type": "Link",
                 "config": {
@@ -332,6 +354,18 @@
                     "colour"
                   ],
                   "label": "Slice Block Colour"
+                }
+              },
+              "rotate_background": {
+                "type": "Select",
+                "config": {
+                  "options": [
+                    "don't rotate",
+                    "left",
+                    "right"
+                  ],
+                  "default_value": "don't rotate",
+                  "label": "Rotate Background"
                 }
               }
             },
@@ -373,7 +407,7 @@
               }
             }
           },
-          "text1": {
+          "text_with_cta": {
             "type": "Slice",
             "fieldset": "Text with CTA",
             "description": "Rich Text Content  with a call to action",
@@ -385,6 +419,28 @@
                 "config": {
                   "single": "heading2, heading3, heading4, heading5, heading6",
                   "label": "title"
+                }
+              },
+              "title_alignment": {
+                "type": "Select",
+                "config": {
+                  "options": [
+                    "left",
+                    "right",
+                    "center"
+                  ],
+                  "default_value": "left",
+                  "label": "Title Alignment"
+                }
+              },
+              "title_font_colour": {
+                "type": "Link",
+                "config": {
+                  "select": "document",
+                  "customtypes": [
+                    "colour"
+                  ],
+                  "label": "Title Font Colour"
                 }
               },
               "slice_background_colour": {
@@ -428,24 +484,27 @@
                   "label": "CTA Location"
                 }
               },
-              "cta_background_colour": {
-                "type": "Link",
+              "cta_colour": {
+                "type": "Select",
                 "config": {
-                  "select": "document",
-                  "customtypes": [
-                    "page"
+                  "options": [
+                    "light",
+                    "dark"
                   ],
-                  "label": "CTA Background Colour"
+                  "default_value": "light",
+                  "label": "CTA Colour"
                 }
               },
-              "cta_text_colour": {
-                "type": "Link",
+              "rotate_background": {
+                "type": "Select",
                 "config": {
-                  "select": "document",
-                  "customtypes": [
-                    "colour"
+                  "options": [
+                    "don't rotate",
+                    "left",
+                    "right"
                   ],
-                  "label": "CTA Text Colour"
+                  "default_value": "don't rotate",
+                  "label": "Rotate Background"
                 }
               }
             },

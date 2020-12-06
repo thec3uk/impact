@@ -8,16 +8,21 @@ import ContactSmallSlice from "./contact/small"
 const Footer = ({ siteTitle, has_newsletter_slice, has_contact_slice, contact_slice_size }) => {
   return (
     <Fragment>
-      {has_contact_slice && contact_slice_size === `large` ? (
+      {/* {has_contact_slice && contact_slice_size === `large` ? (
         <ContactLargeSlice />
       ) : has_contact_slice && contact_slice_size === `small` ? (
         <ContactSmallSlice />
       ) : (
         <div></div>
-      )}
+      )} */}
       {/* {has_newsletter_slice && <NewsletterSlice />} */}
-      <footer className="py-8 px-8 md:-mx-24 lg:px-16 font-serif text-black">
-        Copyright © {siteTitle} {new Date().getFullYear()}
+      <footer className="mt-20 py-4 px-8 md:-mx-24 lg:px-16 border-t-2 border-impact-darkBlue-1 text-black flex flex-row justify-between">
+        <div className="text-lg font-body">
+          Copyright © {siteTitle}
+          <br />
+          {new Date().getFullYear()}
+        </div>
+        <ContactSmallSlice />
       </footer>
     </Fragment>
   )

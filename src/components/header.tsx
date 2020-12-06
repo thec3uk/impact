@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react"
 import BackgroundImage from "gatsby-background-image"
 import { CSSTransition } from "react-transition-group"
 import Link from "./link"
+import { isEmpty } from "lodash"
+import Logo from "./logo"
 
 const navCssClasses = (defaultColour, activeColour, activePage) => {
   const activePageClasses = `text-${activeColour} hover:text-${defaultColour} border border-transparent hover:border-${activeColour}`
@@ -59,24 +61,28 @@ const Header = ({
       setScrolling(true)
     }
   }
+
+  const [firstTitle, ...temp] = pageTitle.split(` `)
+  const [lastTitle, ...middleTitle] = temp.reverse()
+
+  const [firstSiteTitle, lastSiteTitle] = siteTitle.split(` `)
+
   return (
     <StaticQuery
       query={`${staticQuery}`}
-      render={(data) =>
-        <BackgroundImage
-          preserveStackingContext={true}
-          Tag="header"
-          className="min-h-screen flex flex-col text-black bg-top bg-cover"
-          fluid={image}
-          backgroundColor={bgColour}
-        >
+      render={(data) => (
+        <div className="h-screen w-screen">
           <nav
-            className={`py-6 px-8 lg:px-40 fixed top-0 animated flex justify-between min-w-full z-100 items-center ${
-              scrolling ? `bg-breathe-blue-1 shadow` : ``
+            className={`py-4 px-4 lg:px-40 fixed top-0 animated flex justify-between w-screen z-100 items-center border-impact-blue-1 border-b-2 ${
+              scrolling ? `bg-white shadow` : `bg-white`
             }`}
           >
-            <div className="uppercase text-lg font-sans" style={{ color: headerFontColour }}>
-              <Link to="/">{siteTitle}</Link>
+            <Logo />
+            <div className="text-3xl font-sans text-center text-impact-darkBlue-1" style={{ color: headerFontColour }}>
+              <Link to="/">
+                <span className="text-impact-blue-1">{firstSiteTitle}</span>
+                {lastSiteTitle}
+              </Link>
             </div>
             <ul className="md:inline-flex hidden">
               {data.allNavBar.edges.map(({ node }) => (
@@ -88,77 +94,104 @@ const Header = ({
                 </li>
               ))}
             </ul>
-            <div className="-mr-2 flex items-center md:hidden">
-              <button
-                type="button"
-                className="inline-flex items-center justify-center p-1 text-white hover:text-breathe-blue-1 hover:bg-white focus:outline-none focus:bg-white focus:text-breathe-blue-1 transition duration-150 ease-in-out"
-                onClick={onMenuOpenClose}
-              >
-                <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              </button>
-            </div>
-            <CSSTransition in={menuOpen} timeout={300} classNames="mobilenav" unmountOnExit>
-              <div className="absolute top-0 inset-x-0 p-2 md:hidden">
-                <div className="shadow-md transition transform origin-top-right">
-                  <div className="bg-breathe-blue-1 shadow-xs overflow-hidden">
-                    <div className="px-6 pt-4 flex items-center justify-between">
-                      <div>
-                        <div className="uppercase text-lg font-sans" style={{ color: headerFontColour }}>
-                          <Link to="/">{siteTitle}</Link>
+            {!isEmpty(data.allNavBar.edges) ? (
+              <>
+                <div className="-mr-2 flex items-center md:hidden">
+                  <button
+                    type="button"
+                    className="inline-flex items-center justify-center p-1 text-black hover:text-breathe-blue-1 hover:bg-white focus:outline-none focus:bg-white focus:text-breathe-blue-1 transition duration-150 ease-in-out"
+                    onClick={onMenuOpenClose}
+                  >
+                    <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                  </button>
+                </div>
+                <CSSTransition in={menuOpen} timeout={300} classNames="mobilenav" unmountOnExit>
+                  <div className="absolute top-0 inset-x-0 p-2 md:hidden">
+                    <div className="shadow-md transition transform origin-top-right">
+                      <div className="bg-breathe-blue-1 shadow-xs overflow-hidden">
+                        <div className="px-6 pt-4 flex items-center justify-between">
+                          <div>
+                            <div className="uppercase text-lg font-sans" style={{ color: headerFontColour }}>
+                              <Link to="/">{siteTitle}</Link>
+                            </div>
+                          </div>
+                          <div className="-mr-2">
+                            <button
+                              type="button"
+                              className="inline-flex items-center justify-center p-1 text-white hover:text-breathe-blue-1 hover:bg-white focus:outline-none focus:bg-white focus:text-breathe-blue-1 transition duration-150 ease-in-out"
+                              onClick={onMenuOpenClose}
+                            >
+                              <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth="2"
+                                  d="M6 18L18 6M6 6l12 12"
+                                />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                        <div className="px-2 pt-2 pb-3 block">
+                          {data.allNavBar.edges.map(({ node }) => (
+                            <div
+                              key={node.uid}
+                              className={
+                                `mx-2 my-2 p-2 uppercase ` + navCssClasses(`white`, `black`, currentUid === node.uid)
+                              }
+                            >
+                              <Link to={node}>{node.data.page_title}</Link>
+                            </div>
+                          ))}
                         </div>
                       </div>
-                      <div className="-mr-2">
-                        <button
-                          type="button"
-                          className="inline-flex items-center justify-center p-1 text-white hover:text-breathe-blue-1 hover:bg-white focus:outline-none focus:bg-white focus:text-breathe-blue-1 transition duration-150 ease-in-out"
-                          onClick={onMenuOpenClose}
-                        >
-                          <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2"
-                              d="M6 18L18 6M6 6l12 12"
-                            />
-                          </svg>
-                        </button>
-                      </div>
-                    </div>
-                    <div className="px-2 pt-2 pb-3 block">
-                      {data.allNavBar.edges.map(({ node }) => (
-                        <div
-                          key={node.uid}
-                          className={
-                            `mx-2 my-2 p-2 uppercase ` + navCssClasses(`white`, `black`, currentUid === node.uid)
-                          }
-                        >
-                          <Link to={node}>{node.data.page_title}</Link>
-                        </div>
-                      ))}
                     </div>
                   </div>
-                </div>
-              </div>
-            </CSSTransition>
-          </nav>
-          <div
-            className="flex-grow flex flex-col text-center justify-center h-auto"
-            style={{ color: headerFontColour }}
-          >
-            <h1 className="font-serifAlt text-5xl lg:text-6xl">{pageTitle}</h1>
-            <h2 className="font-accent text-5xl lg:text-6xl">{pageSubtitle}</h2>
-            {headerCtaUrl && (
-              <div className="mt-8">
-                <Link to={headerCtaUrl} className="border uppercase py-3 px-6 hover:border-black hover:text-black">
-                  {headerCtaTitle}
-                </Link>
-              </div>
+                </CSSTransition>
+              </>
+            ) : (
+              <div className="w-10"></div>
             )}
-          </div>
-        </BackgroundImage>
-      }
+          </nav>
+          <BackgroundImage
+            preserveStackingContext={true}
+            Tag="header"
+            className="h-full flex flex-col text-black bg-top bg-cover bg-impact-grey-4 bg-opacity-40"
+            fluid={image}
+            backgroundColor={bgColour}
+            // style={{
+            //   filter: `blur(2px)`,
+            // }}
+          >
+            <div
+              className="flex-grow flex flex-col text-right justify-center pr-4 h-auto "
+              style={{ color: headerFontColour }}
+            >
+              <h1 className="font-sans text-7xl leading-normal lowercase text-white text-shadow-lg">
+                {firstTitle}
+                <br />
+                {middleTitle.map((word, idx) => (
+                  <span className="text-impact-blue-1" key={idx}>
+                    {word}
+                    <br />
+                  </span>
+                ))}
+                {lastTitle}
+              </h1>
+              <h2 className="font-accent text-5xl lg:text-6xl">{pageSubtitle}</h2>
+              {headerCtaUrl.url && (
+                <div className="mt-8">
+                  <Link to={headerCtaUrl} className="border uppercase py-3 px-6 hover:border-black hover:text-black">
+                    {headerCtaTitle}
+                  </Link>
+                </div>
+              )}
+            </div>
+          </BackgroundImage>
+        </div>
+      )}
     />
   )
 }

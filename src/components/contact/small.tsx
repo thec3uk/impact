@@ -18,7 +18,7 @@ const ContactSmallSlice = ({ inverse }) => {
   `
   // const data = useStaticQuery(query)
 
-  let classname = `text-black hover:text-breathe-blue-1`
+  let classname = `text-black hover:text-impact-darkBlue-1`
   if (inverse) {
     classname = `text-white hover:text-black`
   }
@@ -26,15 +26,19 @@ const ContactSmallSlice = ({ inverse }) => {
     <StaticQuery
       query={`${query}`}
       render={(data) => {
-        const contactData = data.prismic.allContact_informations.edges[0].node
+        const contactData = data.allPrismicContactInformation.nodes[0].data
         return (
-          <div className="text-center my-8">
-            {contactData.facebook_profile && <a href={`https://www.facebook.com/${contactData.facebook_profile}`} className={classname}>
-              <FontAwesomeIcon icon={faFacebookF} fixedWidth size="2x" className="h-8 mr-12 inline-block" />
-            </a>}
-            {contactData.instagram_profile && <a href={`https://www.instagram.com/${contactData.instagram_profile}`} className={classname}>
-              <FontAwesomeIcon icon={faInstagram} fixedWidth size="2x" className="h-8 inline-block" />
-            </a>}
+          <div className="text-center my-auto">
+            {contactData.facebook_profile && (
+              <a href={`https://www.facebook.com/${contactData.facebook_profile}`} className={classname}>
+                <FontAwesomeIcon icon={faFacebookF} fixedWidth size="2x" className="h-8 inline-block" />
+              </a>
+            )}
+            {contactData.instagram_profile && (
+              <a href={`https://www.instagram.com/${contactData.instagram_profile}`} className={classname}>
+                <FontAwesomeIcon icon={faInstagram} fixedWidth size="2x" className="h-8 ml-12 inline-block" />
+              </a>
+            )}
           </div>
         )
       }}

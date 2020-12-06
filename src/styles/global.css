@@ -1,11 +1,11 @@
-/* @font-face {
-  font-family: 'didot';
-  src:  url('/fonts/didot/Didot.ttc') format('opentype');
-  font-weight: normal;
+@font-face {
+  font-family: "Proxima Nova Black";
+  src: url("/fonts/Proxima_Nova_Black.otf") format("opentype");
+  font-weight: 900;
   font-style: normal;
 }
 
-@font-face {
+/* @font-face {
   font-family: 'ZefaniStencil';
   src:  url('/fonts/ZefaniStencil(uppercase)-Regular.otf') format('opentype');
   font-weight: normal;
@@ -19,7 +19,7 @@
   font-style: normal;
 } */
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300&display=swap");
 
 @tailwind base;
 
@@ -57,7 +57,7 @@ h1 {
   @apply text-7xl;
 }
 h2 {
-  @apply text-6xl;
+  @apply text-7xl;
 }
 h2 .font-accent {
   @apply text-7xl;
@@ -89,6 +89,18 @@ p {
 
 section li {
   @apply list-inside list-disc;
+}
+
+.section-rotated::before {
+  content: "";
+  position: absolute;
+  width: 150%;
+  height: 175%;
+  top: -30%;
+  left: -25%;
+  z-index: -1;
+  background-position: 0 0;
+  background-repeat: repeat;
 }
 
 @tailwind components;

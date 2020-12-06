@@ -4,7 +4,6 @@ import { PageProps, StaticQuery, graphql } from "gatsby"
 import Header from "./header"
 import Footer from "./footer"
 import SEO from "./seo"
-import "./layout.css"
 
 const Layout: React.FC<PageProps> = (props: PageProps) => {
   const query = graphql`
@@ -45,7 +44,7 @@ const Layout: React.FC<PageProps> = (props: PageProps) => {
           />
           <div
             // data-wio-id={page._meta.id}
-            className="px-0 sm:px-12 md:px-24 lg:px-24"
+            className="px-0 sm:px-12 md:px-24 lg:px-24 w-screen overflow-x-hidden"
             style={{
               backgroundColor: page.bg_colour.colour,
             }}
