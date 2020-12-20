@@ -2,7 +2,7 @@ import * as React from "react"
 import { PageProps, StaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
-import Footer from "./footer"
+import footer from "./footer"
 import SEO from "./seo"
 
 const Layout: React.FC<PageProps> = (props: PageProps) => {
@@ -44,13 +44,13 @@ const Layout: React.FC<PageProps> = (props: PageProps) => {
           />
           <div
             // data-wio-id={page._meta.id}
-            className="px-0 sm:px-12 md:px-24 lg:px-24 w-screen overflow-x-hidden"
+            className="px-0 sm:px-12 md:px-24 lg:px-4 w-screen overflow-x-hidden"
             style={{
               backgroundColor: page.bg_colour.colour,
             }}
           >
             <main>{props.children}</main>
-            <Footer
+            <footer.Footer
               siteTitle={data.site.siteMetadata.title}
               has_newsletter_slice={page.has_newsletter_slice}
               has_contact_slice={page.has_contact_slice}

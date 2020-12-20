@@ -9,6 +9,12 @@ module.exports = {
       zIndex: {
         100: "100",
       },
+      rotate: {
+        "-15": "-15deg",
+        "-10": "-10deg",
+        10: "10deg",
+        15: "15deg",
+      },
       colors: {
         // This is so we can reference data driven colours in class declarations
         "3DB4F5": "#3DB4F5",

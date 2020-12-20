@@ -1,7 +1,5 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { RichText } from "prismic-reactjs"
-import Link from "../link"
 
 import Paragraph from "./components/paragraph"
 import Section from "./components/section"
@@ -21,9 +19,9 @@ const TextWithCTASlice = ({ data }) => {
       />
       <div>
         {data.items.map((item, idx: number) => (
-          <Paragraph key={idx} paragraph={item} />
+          <Paragraph className="md:w-2/5" key={idx} paragraph={item} alignment={data.primary.title_alignment} />
         ))}
-        <div className="mb-32">
+        <div className="mb-32 md:mb-20">
           <CTA data={data.primary} />
         </div>
       </div>

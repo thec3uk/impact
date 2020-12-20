@@ -16,12 +16,18 @@ const colourClasses = {
 
 const CTA = ({ data }) => {
   const cta = createCTAObject(data)
+  const alignmentClass =
+    data.title_alignment === "left"
+      ? "text-left md:mr-auto"
+      : data.title_alignment === "right"
+      ? "md:text-right md:ml-auto"
+      : "text-center"
   return (
     <div className="flex justify-center">
       <Link
-        className={`w-full uppercase text-center px-4 py-2 border-2 border-transparent text-2xl font-medium shadow focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+        className={`w-full md:w-max uppercase text-center px-4 py-2 border-2 border-transparent text-2xl font-medium shadow focus:outline-none focus:ring-2 focus:ring-offset-2 ${
           colourClasses[cta.colour]
-        }`}
+        } ${alignmentClass}`}
         to={cta.location}
       >
         {cta.text}

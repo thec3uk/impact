@@ -30,7 +30,7 @@ const TextSlice = ({ data }) => {
         />
       )}
       {data.items.map((item, idx: number) => (
-        <Paragraph key={idx} paragraph={item} />
+        <Paragraph className="lg:w-1/2" key={idx} paragraph={item} alignment={data.primary.title_alignment} />
       ))}
     </Section>
   )

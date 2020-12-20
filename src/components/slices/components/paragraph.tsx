@@ -13,10 +13,12 @@ const bodyFontValue = (bodyFont: string) => {
   return get(mapping, bodyFont, "font-body")
 }
 
-const Paragraph = ({ paragraph, body_text_colour, children }) => {
+const Paragraph = ({ paragraph, className, alignment }) => {
+  const alignmentClass =
+    alignment === "left" ? "text-left" : alignment === "right" ? "md:text-right md:ml-auto" : "text-center"
   return (
     <div
-      className={`text-justify md:text-left text-lg ${bodyFontValue(paragraph.body_font)}`}
+      className={`text-justify text-lg ${bodyFontValue(paragraph.body_font)} ${className} ${alignmentClass}`}
       style={{ color: colourValue(paragraph.slice_body_text_colour) }}
     >
       <div dangerouslySetInnerHTML={{ __html: paragraph.content.html }} />
