@@ -77,7 +77,7 @@ export const plugins = [
       }) => (doc: { type: string; link_type: string; url: string; uid: string }): string => {
         // Your link resolver
 
-        if (value && value.tags?.includes(`domain:${domainName}`)) {
+        if (value && value.tags.includes(`domain:${domainName}`)) {
           if (value.type === "colour") return ""
           return linkResolver(doc)
         }
