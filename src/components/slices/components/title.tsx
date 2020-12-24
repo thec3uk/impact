@@ -2,7 +2,7 @@ import React from "react"
 import { get } from "lodash"
 
 const colourValue = (colourObj: Record<string, unknown>) =>
-  get(colourObj, "document.data.colour").toUpperCase().slice(1)
+  get(colourObj, "document.data.colour", "black").toUpperCase().slice(1)
 
 const Title = ({ html_title, alignment, colour }) => {
   const alignmentClass = alignment === "left" ? "text-left" : alignment === "right" ? "text-right" : "text-center"

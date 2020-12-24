@@ -10,6 +10,11 @@ C3 Impact Website
 
   - Slices can be refactored into 2 obvious parts: data querying and presentation
 
+- Tagging documents could get tricky
+  example a document tagged with 2 domains. One domain wants this doc in the navbar, but the other doesn't - current tag names do not differenitate.
+
+- Filtering documents based on domain. This is not happening yet in code.
+
 ## Questions
 
 - Does C3 Impact need/want a email newsletter?
@@ -20,12 +25,23 @@ C3 Impact Website
 
 ## todo
 
-- build out Header
-- build out footer
-- Build text
-- build text with CTA
-- Decide how bg slants will applied through data
-- Finish desktop design
-- Finish Colour replacement from Breathe
+- Finish desktop design... not sure what is missing but there is too much whitespace, may be ok for now, and see what happens with content?
 
-- Configure fonts (so brush not done)
+- bg image in text slice for desktop
+
+  - parameterise height - might this depend on the dimensions of the image?
+  - put items in tailwind?
+  - landscape images could be better
+
+- deploy this to netlify
+- Redirects (not client side!)
+- prep training videos
+
+  - plan video topics
+  - write a script
+  - record videos
+  - sharepoint for hosting resources.
+
+- Finish Colour replacement from Breathe
+- Configure fonts (so brush not done, but I haven't used it in the design...)
+- Speak with Phil about vector graphics for the websites, these need to be subtle

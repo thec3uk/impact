@@ -15,8 +15,6 @@ import { query as Header } from "../components/header"
 import { query as Footer } from "../components/footer"
 
 const Page = ({ data }) => {
-  console.log(data)
-
   if (data.prismicPage === null || data.prismicPage.data === null) {
     return null
   }

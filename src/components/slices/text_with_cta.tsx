@@ -6,11 +6,18 @@ import Section from "./components/section"
 import Title from "./components/title"
 import CTA from "./components/cta"
 
+import BackgroundImage from "gatsby-background-image"
+
 const TextWithCTASlice = ({ data }) => {
+  const hasImg = data.primary.slice_background_image.fluid !== null
+
   return (
     <Section
+      id_name={`textCTA-${data.id}`}
       background_colour={data.primary.slice_background_colour}
       rotate_background={data.primary.rotate_background}
+      background_image={data.primary.slice_background_image}
+      alignment={data.primary.title_alignment}
     >
       <Title
         html_title={data.primary.title.html}
@@ -19,7 +26,15 @@ const TextWithCTASlice = ({ data }) => {
       />
       <div>
         {data.items.map((item, idx: number) => (
-          <Paragraph className="md:w-2/5" key={idx} paragraph={item} alignment={data.primary.title_alignment} />
+          <Paragraph
+            className={!hasImg && "md:w-2/5"}
+            key={idx}
+            paragraph={item}
+            alignment={data.primary.title_alignment}
+            background_colour={
+              hasImg && data.primary.slice_background_colour ? data.primary.slice_background_colour : "transparent"
+            }
+          />
         ))}
         <div className="mb-32 md:mb-20">
           <CTA data={data.primary} />
@@ -33,6 +48,7 @@ export const query = graphql`
   fragment textWithCTASlice on PrismicPageBodyTextWithCta {
     slice_type
     slice_label
+    id
     primary {
       title {
         html

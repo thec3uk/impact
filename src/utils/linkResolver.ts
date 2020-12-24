@@ -1,20 +1,26 @@
-export const linkResolver = (doc) => {
-  const toTypeString = typeof doc === `string`
-  let to = undefined
-  if (!toTypeString) {
-    const linkTypes = {
-      "Link.document": (doc) => `/${doc._meta.uid}`,
-      "Link.web": (doc) => doc.url,
-      // File and Image to be added when we get to them
-      page: (doc) => `/${doc.uid}`,
-    }
-    const key = doc._linkType !== undefined ? doc._linkType : doc.type
-    to = linkTypes[key]
-    if (to === undefined) {
-      console.error(`Error: unable to parse the Link`, doc)
-      return `/not-found`
-    }
-    return to(doc)
+export const linkResolver = (doc: { type: string; link_type: string; url: string; uid: string }): string => {
+  // let to = undefined
+
+  const toUrl = (doc: { url: string }) => `${doc.url}`
+  const toUid = (doc: { uid: string }) => `/${doc.uid}`
+
+  // const linkTypes = {
+  //   Document: toUrl,
+  //   Web: toUrl,
+  //   Media: toUrl,
+  //   page: toUid,
+  //   redirect: toUid,
+  // }
+  const key = doc.type !== null ? doc.type : doc.link_type
+  // to = linkTypes[key as string]
+  if (key === "Document" || key === "Web" || key === "Media") {
+    return toUrl(doc)
   }
-  return doc
+  if (key === "page" || key === "redirect") {
+    return toUid(doc)
+  } else {
+    console.error("Error: unable to parse the Link", doc.type)
+    return "/not-found"
+  }
+  // return to(doc)
 }

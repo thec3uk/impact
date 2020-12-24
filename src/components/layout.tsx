@@ -18,14 +18,13 @@ const Layout: React.FC<PageProps> = (props: PageProps) => {
   // const data = useStaticQuery(query)
   const page = props.page
   const uid = props.uid
-  console.log(props)
   // below is a JS thing, but TS should handles this with a type...
   if (!page) return <div>Page has not been configured correctly</div>
   return (
     <StaticQuery
       query={`${query}`}
       render={(data) => (
-        <>
+        <div className="overflow-x-hidden">
           <Header
             siteTitle={data.site.siteMetadata.title}
             image={page.header_image.fluid}
@@ -44,7 +43,7 @@ const Layout: React.FC<PageProps> = (props: PageProps) => {
           />
           <div
             // data-wio-id={page._meta.id}
-            className="px-0 sm:px-12 md:px-24 lg:px-4 w-screen overflow-x-hidden"
+            className="px-0 md:px-4 w-screen"
             style={{
               backgroundColor: page.bg_colour.colour,
             }}
@@ -57,7 +56,7 @@ const Layout: React.FC<PageProps> = (props: PageProps) => {
               contact_slice_size={page.contact_slice_size}
             />
           </div>
-        </>
+        </div>
       )}
     />
   )

@@ -16,7 +16,7 @@ const Footer = ({ siteTitle, has_newsletter_slice, has_contact_slice, contact_sl
         <div></div>
       )} */}
       {/* {has_newsletter_slice && <NewsletterSlice />} */}
-      <footer className="mt-20 py-4 px-8 md:-mx-24 lg:px-16 border-t-2 border-impact-darkBlue-1 text-black flex flex-row justify-between">
+      <footer className="mt-20 py-4 px-8 lg:-mx-4 border-t-2 border-impact-darkBlue-1 text-black flex flex-row justify-between">
         <div className="text-lg font-body">
           Copyright © {siteTitle}
           <br />
@@ -28,8 +28,6 @@ const Footer = ({ siteTitle, has_newsletter_slice, has_contact_slice, contact_sl
   )
 }
 
-export default Footer
-
 export const query = graphql`
   fragment footer on PrismicPageDataType {
     has_contact_slice
@@ -37,3 +35,5 @@ export const query = graphql`
     contact_slice_size
   }
 `
+
+export default { Footer, query }

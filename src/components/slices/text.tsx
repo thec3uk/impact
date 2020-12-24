@@ -17,10 +17,14 @@ import Title from "./components/title"
 // }
 
 const TextSlice = ({ data }) => {
+  const hasImg = data.primary.slice_background_image.fluid !== null
   return (
     <Section
+      id_name={`text-${data.id}`}
       background_colour={data.primary.slice_background_colour}
       rotate_background={data.primary.rotate_background}
+      background_image={data.primary.slice_background_image}
+      alignment={data.primary.title_alignment}
     >
       {data.primary.title && (
         <Title
@@ -30,7 +34,15 @@ const TextSlice = ({ data }) => {
         />
       )}
       {data.items.map((item, idx: number) => (
-        <Paragraph className="lg:w-1/2" key={idx} paragraph={item} alignment={data.primary.title_alignment} />
+        <Paragraph
+          className="md:w-1/2"
+          key={idx}
+          paragraph={item}
+          alignment={data.primary.title_alignment}
+          background_colour={
+            hasImg && data.primary.slice_background_colour ? data.primary.slice_background_colour : "transparent"
+          }
+        />
       ))}
     </Section>
   )

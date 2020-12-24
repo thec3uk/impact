@@ -1,134 +1,118 @@
-@font-face {
-  font-family: "Proxima Nova Black";
-  src: url("/fonts/Proxima_Nova_Black.otf") format("opentype");
-  font-weight: 900;
-  font-style: normal;
-}
-
-/* @font-face {
-  font-family: 'ZefaniStencil';
-  src:  url('/fonts/ZefaniStencil(uppercase)-Regular.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'SilverSouth';
-  src:  url('/fonts/Silver South Script Alt.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-} */
-
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300&display=swap");
-
 @tailwind base;
-
-/* .mobilenav-enter {
-  @apply opacity-0;
-}
-.mobilenav-enter-active {
-  @apply transition-opacity opacity-100 duration-150 ease-out;
-}
-.mobilenav-exit {
-  @apply opacity-100;
-}
-.mobilenav-exit-active {
-  @apply transition-opacity opacity-0 duration-100 ease-in;
-} */
-
-.mobilenav,
-.mobilenav-enter {
-  opacity: 0;
-}
-.mobilenav-enter-active {
-  opacity: 1;
-
-  transition: opacity 300ms;
-}
-.mobilenav-exit {
-  opacity: 1;
-}
-.mobilenav-exit-active {
-  opacity: 0;
-  transition: opacity 300ms;
-}
-
-h1 {
-  @apply text-7xl;
-}
-h2 {
-  @apply text-7xl;
-}
-h2 .font-accent {
-  @apply text-7xl;
-}
-
-h3 {
-  @apply text-5xl;
-}
-
-h4 {
-  @apply text-3xl;
-}
-
-h5 {
-  @apply text-2xl;
-}
-
-h6 {
-  @apply text-xl;
-}
-
-p {
-  @apply mb-8;
-}
-
-#map p {
-  @apply mb-0;
-}
-
-section li {
-  @apply list-inside list-disc;
-}
-
-.section-rotated::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  background-position: 0 0;
-  background-repeat: repeat;
-}
-
-.section-rotated-right:before {
-  width: 150%;
-  height: 175%;
-  top: -30%;
-  left: -25%;
-}
-
-.section-rotated-left:before {
-  width: 150%;
-  height: 175%;
-  top: -30%;
-  left: -25%;
-}
-
-@screen md {
-  .section-rotated-left::before {
-    width: 150%;
-    height: 200%;
-    top: 0;
-    left: -25%;
-  }
-
-  .section-rotated-right::before {
-    width: 150%;
-    height: 200%;
-    top: -80%;
-    left: -25%;
-  }
-}
-
 @tailwind components;
-
 @tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "Proxima Nova Black";
+    src: url("/fonts/Proxima_Nova_Black.otf") format("opentype");
+    font-weight: 900;
+    font-style: normal;
+  }
+
+  @import url("https://fonts.googleapis.com/css?family=Montserrat:300&display=swap");
+
+  .mobilenav,
+  .mobilenav-enter {
+    opacity: 0;
+  }
+  .mobilenav-enter-active {
+    opacity: 1;
+
+    transition: opacity 300ms;
+  }
+  .mobilenav-exit {
+    opacity: 1;
+  }
+  .mobilenav-exit-active {
+    opacity: 0;
+    transition: opacity 300ms;
+  }
+
+  h1 {
+    @apply text-7xl;
+  }
+  h2 {
+    @apply text-7xl;
+  }
+  h2 .font-accent {
+    @apply text-7xl;
+  }
+
+  h3 {
+    @apply text-5xl;
+  }
+
+  h4 {
+    @apply text-3xl;
+  }
+
+  h5 {
+    @apply text-2xl;
+  }
+
+  h6 {
+    @apply text-xl;
+  }
+
+  #map p {
+    @apply mb-0;
+  }
+
+  section li {
+    @apply list-inside list-disc;
+  }
+
+  .section-rotated::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background-position: 0 0;
+    --section-height: 200%;
+    width: 100vw;
+    height: var(--section-height);
+    top: calc(-0.25 * var(--section-height));
+    background-repeat: no-repeat;
+    /* left: -1rem; */
+  }
+
+  .section-rotated-right:before {
+    clip-path: polygon(0% 0%, 100% 17.6327%, 100% 100%, 0% 82.3673%); /* 10deg */
+  }
+
+  .section-rotated-left:before {
+    clip-path: polygon(0% 17.6327%, 100% 0%, 100% 82.3673%, 0% 100%); /* 10deg */
+  }
+
+  @screen md {
+    .section-rotated::before {
+      --section-height: 150%;
+      left: -1rem;
+      top: -15%;
+      background-size: 50% auto;
+    }
+
+    .section-rotated-left::before {
+      clip-path: polygon(0% 17.6327%, 100% 0%, 100% 82.3673%, 0% 100%); /* 10deg */
+    }
+
+    .section-rotated-right::before {
+      clip-path: polygon(0% 0%, 100% 17.6327%, 100% 100%, 0% 82.3673%); /* 10deg */
+    }
+  }
+
+  @screen lg {
+    .section-rotated::before {
+      --section-height: 200%;
+      top: -30%;
+    }
+  }
+
+  @screen xl {
+    .section-rotated::before {
+      --section-height: 300%;
+      top: calc(-0.25 * var(--section-height));
+      /* background-size: auto calc(-0.5 * var(--section-height) + 300%); */
+    }
+  }
+}

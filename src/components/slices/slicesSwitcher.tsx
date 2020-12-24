@@ -36,7 +36,7 @@ const Slices = ({ slices }) => {
         return <div key={idx}></div>
       }
       return (
-        <div key={idx} id={`${idx}`} className="py-20 md:py-52">
+        <div key={idx} id={`${idx}`} className="py-20 md:py-72">
           <Component key={idx} data={contentSlice} />
         </div>
       )

@@ -14,6 +14,11 @@ module.exports = {
         "-10": "-10deg",
         10: "10deg",
         15: "15deg",
+        30: "30deg",
+        51: "51deg",
+      },
+      translate: {
+        "3/2": "150%",
       },
       colors: {
         // This is so we can reference data driven colours in class declarations
@@ -49,6 +54,7 @@ module.exports = {
   },
   variants: {
     backgroundColor: ["responsive", "dark", "group-hover", "focus-within", "hover", "focus", "before"],
+    backgroundPosition: ["responsive", "before"],
   },
   plugins: [require("tailwindcss-textshadow"), require("tailwindcss-pseudo-elements")],
 }
