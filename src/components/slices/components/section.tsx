@@ -2,12 +2,21 @@ import React from "react"
 import { get } from "lodash"
 
 const colourValue = (colourObj: Record<string, unknown>) => {
-  const value = get(colourObj, "document.data.colour", "white").toUpperCase().slice(1)
-  return value
+  const hexValue = get(colourObj, "document.data.colour", "#FFFFFF").toUpperCase()
+  const bgColours = {
+    "#3DB4F5": "bg-impact-blue-1",
+    "#1E44A7": "bg-impact-darkBlue-1",
+    "#343434": "bg-black",
+    "#EFEFEF": "bg-impact-grey-1",
+    "#D1D1D1": "bg-impact-grey-2",
+    "#6C6C6C": "bg-impact-grey-3",
+    "#4E4E4E": "bg-impact-grey-4",
+    "#FFFFFF": "bg-white",
+  }
+  return bgColours[hexValue]
 }
 
 const Section = ({ id_name, background_colour, children, rotate_background, background_image, alignment }) => {
-  console.log(background_image)
   const landscape = background_image.fluid && background_image.fluid.aspectRatio > 1
   const rotateClassNames =
     rotate_background === "left"
@@ -38,7 +47,7 @@ const Section = ({ id_name, background_colour, children, rotate_background, back
       <section
         id={id_name}
         // TODO sort out that the full class name is not in the code (PURGE)
-        className={`transform ${rotateClassNames} h-full before:bg-${colourValue(background_colour)} ${bgImageClass}`}
+        className={`transform ${rotateClassNames} h-full before:${colourValue(background_colour)} ${bgImageClass}`}
       >
         <div className={`px-4 md:px-8 ${background_image.fluid && alignmentContainerClass} text-black`}>
           <div className={`w-full ${background_image.fluid && `md:w-2/5 ${alignmentClass}`}`}>{children}</div>

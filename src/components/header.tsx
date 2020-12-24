@@ -57,7 +57,6 @@ const Header = ({
   `
   const data = useStaticQuery(staticQuery)
   const navBar = [...data.allPrismicPage.edges, ...data.allPrismicRedirect.edges]
-  console.log(navBar)
 
   const [scrolling, setScrolling] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
