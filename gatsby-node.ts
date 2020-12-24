@@ -61,7 +61,7 @@ export const createPages: GatsbyNode["createPages"] = async ({ actions, graphql 
     }
   `)
 
-  const domainTag = `domain:${domainQuery.data?.site.siteMetadata.domain}`
+  const domainTag = `domain:${domainQuery.data.site.siteMetadata.domain}`
 
   // Query all Pages with their IDs and template data.
   const pages: PageQuery = await graphql(
@@ -80,7 +80,7 @@ export const createPages: GatsbyNode["createPages"] = async ({ actions, graphql 
     { domainTag: domainTag }
   )
   // Create pages for each Page in Prismic using the selected template.
-  pages.data?.allPrismicPage.nodes.forEach((node) => {
+  pages.data.allPrismicPage.nodes.forEach((node) => {
     createPage({
       path: node.uid === "home" ? "/" : `/${node.uid}`,
       component: path.resolve(__dirname, "src/templates/page.tsx"),
@@ -115,7 +115,7 @@ export const createPages: GatsbyNode["createPages"] = async ({ actions, graphql 
     { domainTag: domainTag }
   )
 
-  redirects.data?.allPrismicRedirect.nodes.forEach((node) => {
+  redirects.data.allPrismicRedirect.nodes.forEach((node) => {
     const url = linkResolver(node.data.destination)
 
     createRedirect({
