@@ -13,6 +13,7 @@ const colourValue = (colourObj: Record<string, unknown>) => {
     "#4E4E4E": "bg-impact-grey-4",
     "#FFFFFF": "bg-white",
   }
+
   return bgColours[hexValue]
 }
 

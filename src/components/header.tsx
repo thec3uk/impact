@@ -89,13 +89,16 @@ const Header = ({
   return (
     <div className="h-screen w-screen">
       <nav
-        className={`py-4 px-4 lg:px-8 fixed top-0 animated flex justify-between w-screen z-100 items-center border-impact-blue-1 border-b-2 ${
+        className={`py-4 px-4 lg:px-8 fixed top-0 animated inline-flex w-screen z-100 items-center border-impact-blue-1 border-b-2 ${
           scrolling ? "bg-white shadow" : "bg-white"
         }`}
       >
         <Logo />
-        <div className="text-3xl font-sans text-center text-impact-darkBlue-1" style={{ color: headerFontColour }}>
-          <Link to="/">
+        <div
+          className="text-3xl font-sans text-center mx-auto lg:ml-4 text-impact-darkBlue-1"
+          style={{ color: headerFontColour }}
+        >
+          <Link to={{ uid: "", type: "page" }}>
             <span className="text-impact-blue-1">{firstSiteTitle}</span>
             {lastSiteTitle}
           </Link>
@@ -134,7 +137,7 @@ const Header = ({
                     <div className="px-6 pt-4 flex items-center justify-between">
                       <div>
                         <div className="uppercase text-lg font-sans" style={{ color: headerFontColour }}>
-                          <Link to="/">
+                          <Link to={{ uid: "", type: "page" }}>
                             <span className="text-white">{firstSiteTitle}</span>
                             {lastSiteTitle}
                           </Link>
