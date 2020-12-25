@@ -4,14 +4,14 @@ import { get } from "lodash"
 const colourValue = (colourObj: Record<string, unknown>) => {
   const hexValue = get(colourObj, "document.data.colour", "#FFFFFF").toUpperCase()
   const bgColours = {
-    "#3DB4F5": "bg-impact-blue-1",
-    "#1E44A7": "bg-impact-darkBlue-1",
-    "#343434": "bg-black",
-    "#EFEFEF": "bg-impact-grey-1",
-    "#D1D1D1": "bg-impact-grey-2",
-    "#6C6C6C": "bg-impact-grey-3",
-    "#4E4E4E": "bg-impact-grey-4",
-    "#FFFFFF": "bg-white",
+    "#3DB4F5": "before:bg-impact-blue-1",
+    "#1E44A7": "before:bg-impact-darkBlue-1",
+    "#343434": "before:bg-black",
+    "#EFEFEF": "before:bg-impact-grey-1",
+    "#D1D1D1": "before:bg-impact-grey-2",
+    "#6C6C6C": "before:bg-impact-grey-3",
+    "#4E4E4E": "before:bg-impact-grey-4",
+    "#FFFFFF": "before:bg-white",
   }
 
   return bgColours[hexValue]
@@ -48,7 +48,7 @@ const Section = ({ id_name, background_colour, children, rotate_background, back
       <section
         id={id_name}
         // TODO sort out that the full class name is not in the code (PURGE)
-        className={`transform ${rotateClassNames} h-full before:${colourValue(background_colour)} ${bgImageClass}`}
+        className={`transform ${rotateClassNames} h-full ${colourValue(background_colour)} ${bgImageClass}`}
       >
         <div className={`px-4 md:px-8 ${background_image.fluid && alignmentContainerClass} text-black`}>
           <div className={`w-full ${background_image.fluid && `md:w-2/5 ${alignmentClass}`}`}>{children}</div>

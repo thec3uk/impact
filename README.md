@@ -33,10 +33,8 @@ C3 Impact Website
   - put items in tailwind?
   - landscape images could be better
 
-- center the title when the navbar has items
-
-- deploy this to netlify
 - Redirects (not client side!)
+- colour classes done correctly - refactor these functions somehow.
 - prep training videos
 
   - plan video topics
